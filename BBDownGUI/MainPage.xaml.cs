@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Text;
 using static BBDownGUI.Console;
 
@@ -10,15 +11,13 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
-        console = new Console(
-            new OutputHandler((str) =>
-            {
-                Trace.WriteLine(str);
-                Output.Text = str;
-            }
-        ));
-    }
 
+        console = new Console((str) =>
+            {
+                Application.Current.Dispatcher.Dispatch(() => Output.Text = str);
+            }
+        );
+    }
     private void OnTextCompleted(object sender, EventArgs e)
     {
         string text = TextEdit.Text;
@@ -29,6 +28,15 @@ public partial class MainPage : ContentPage
     private void OnTextChanged(object sender, TextChangedEventArgs e)
     {
         TextEdit.CursorPosition = e.NewTextValue.Length;
+        if (e.NewTextValue.Length == 0)
+        {
+            return;
+        }
+        if (new char[] { '\r', '\n' }.Contains(e.NewTextValue[^1]))
+        {
+            ((Editor)sender).Text = e.NewTextValue.Remove(e.NewTextValue.Length - 1);
+            OnTextCompleted(null, null);
+        }
     }
 
 }

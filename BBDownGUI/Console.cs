@@ -31,16 +31,22 @@ namespace BBDownGUI
                 CreateNoWindow = true
             };
             process.StartInfo = startinfo;
-            process.OutputDataReceived += new DataReceivedEventHandler((sender, e) =>
-                {
-                    Trace.WriteLine("Recieved new output data");
-                    sb.Append(e.Data);
-                    OutputRecieved(sb.ToString());
-                }
-            );
+            process.ErrorDataReceived += (sender, e) =>
+            {
+                sb.AppendLine(e.Data);
+                OutputRecieved(sb.ToString());
+            };
+            process.OutputDataReceived += (sender, e) =>
+            {
+                sb.AppendLine(e.Data);
+                OutputRecieved(sb.ToString());
+            };
             OutputRecieved += onDataReceived;
             //开始进程
             process.Start();
+            //记得写这句 不写就不会分发Event
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
             this.process = process;
         }
 

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BBDownGUI.MainPage">
+    <ScrollView>
+        <VerticalStackLayout 
+            Spacing="25" 
+            Padding="30,0" 
+            VerticalOptions="Center">
+
+            <Editor
+                x:Name="TextEdit"
+                WidthRequest="300"
+                Placeholder="输入AV、BV、分享链接或视频链接"
+                IsTextPredictionEnabled="False"
+                VerticalTextAlignment="Center"
+                CursorPosition="0"
+                TextChanged="OnTextChanged" />
+
+            <Button 
+                x:Name="NextBtn"
+                Text="下一步"
+                Clicked="OnTextCompleted"
+                HorizontalOptions="Center" />
+
+            <Label
+                x:Name="Output"
+                />
+        </VerticalStackLayout>
+    </ScrollView>
+ 
+</ContentPage>

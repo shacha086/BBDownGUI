@@ -1,13 +1,10 @@
 ﻿using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Text;
-using static BBDownGUI.Console;
 
 namespace BBDownGUI;
 
 public partial class MainPage : ContentPage
 {
-    Console console;
+    private readonly Console console;
     public MainPage()
     {
         InitializeComponent();

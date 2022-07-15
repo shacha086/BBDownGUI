@@ -56,5 +56,10 @@ namespace BBDownGUI
             StreamWriter sIn = process.StandardInput;
             sIn.WriteLine(str);
         }
+        internal void AddPath(string path)
+        {
+            path = Path.GetDirectoryName(path);
+            Run($"path %path%;{path}");
+        }
     }
 }

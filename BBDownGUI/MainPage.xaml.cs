@@ -29,7 +29,7 @@ public partial class MainPage : ContentPage
         {
             return;
         }
-        if (new char[] { '\r', '\n' }.Contains(e.NewTextValue[^1]))
+        if (e.NewTextValue[^1] is '\n' or '\r')
         {
             ((Editor)sender).Text = e.NewTextValue.Remove(e.NewTextValue.Length - 1);
             OnTextCompleted(null, null);

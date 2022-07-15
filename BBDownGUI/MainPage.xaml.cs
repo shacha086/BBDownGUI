@@ -17,9 +17,11 @@ public partial class MainPage : ContentPage
     }
     private void OnTextCompleted(object sender, EventArgs e)
     {
-        string text = TextEdit.Text;
-        Trace.WriteLine(text);
-        console.Run(text);
+        //string text = TextEdit.Text;
+        //Trace.WriteLine(text);
+        //console.Run(text);
+        var manager = new FFmpegReleaseManager();
+        Output.Text = string.Join(", ", manager.Release.assets.ConvertAll((it) => $"[name: {it.name}, url: {it.browser_download_url}]"));
     }
 
     private void OnTextChanged(object sender, TextChangedEventArgs e)

@@ -23,7 +23,7 @@ namespace BBDownGUI
         public string events_url { get; set; }
         public string received_events_url { get; set; }
         public string type { get; set; }
-        public string site_admin { get; set; }
+        public bool site_admin { get; set; }
     }
 
     [Serializable]
@@ -46,7 +46,7 @@ namespace BBDownGUI
         public string events_url { get; set; }
         public string received_events_url { get; set; }
         public string type { get; set; }
-        public string site_admin { get; set; }
+        public bool site_admin { get; set; }
     }
 
     [Serializable]
@@ -95,8 +95,8 @@ namespace BBDownGUI
         public string tag_name { get; set; }
         public string target_commitish { get; set; }
         public string name { get; set; }
-        public string draft { get; set; }
-        public string prerelease { get; set; }
+        public bool draft { get; set; }
+        public bool prerelease { get; set; }
         public string created_at { get; set; }
         public string published_at { get; set; }
         public List<AssetsItem> assets { get; set; }

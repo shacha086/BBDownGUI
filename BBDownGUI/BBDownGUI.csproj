@@ -49,8 +49,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Remove="WelcomePage1Detail.xaml" />
+	  <MauiXaml Remove="WelcomePage1Flyout.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	  <PackageReference Include="RestSharp" Version="108.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="WelcomePage1.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
